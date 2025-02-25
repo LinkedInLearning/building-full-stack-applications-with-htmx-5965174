@@ -22,9 +22,6 @@ getMongoUri().then((mongoUri) => {
     .catch(err => console.error(`Failed to connect to in-memory db`, err))
 })
 
-/* app.get("/", (req, res) => {
-    res.send("index.html")
-}) */
 
 //Run the server
 app.listen(PORT, () => {
