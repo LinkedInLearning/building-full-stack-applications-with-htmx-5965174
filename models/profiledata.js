@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const formDataSchema = new mongoose.Schema({
+const profileDataSchema = new mongoose.Schema({
     personalInfo: {
       firstName: String,
       lastName: String,
@@ -16,6 +16,6 @@ const formDataSchema = new mongoose.Schema({
       notifications: Boolean
     }
   });
-  const FormData = mongoose.model('FormData', formDataSchema);
+  const ProfileData = mongoose.model('ProfileData', profileDataSchema);
 
-  module.exports = FormData;
+  module.exports = ProfileData;
