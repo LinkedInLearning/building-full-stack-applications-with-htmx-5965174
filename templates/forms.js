@@ -45,22 +45,33 @@ function renderStep2(formId, errors, values){
 
     let html = '';
 
+    //Validation Errors
+    if(errors.length > 0){
+        errors.forEach(errorMessage => {
+            html += `
+                <div class="alert alert-danger" role="alert">
+                    ${errorMessage}
+                </div>
+            `;
+        })
+    }
+
     html += `
-        <form hx-post="submit-step2">
+        <form hx-post="/submit-step2" hx-target="#form-section">
             <input type="hidden" name="formId" value="${formId}">
             <div class="mb-3">
                 <label class="form-label">Street Address</label>
-                <input type="text" name="street" class="form-control">
+                <input type="text" name="street" value="${values.street || ''}" class="form-control">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">City</label>
-                <input type="text" name="city" class="form-control">
+                <input type="text" name="city" value="${values.city || ''}" class="form-control">
             </div>
 
             <div class="mb-4">
                 <label class="form-label">ZIP Code</label>
-                <input type="text" name="zip" class="form-control">
+                <input type="text" name="zip" value="${values.zip || ''}" class="form-control">
             </div>
 
             <div class="d-flex justify-content-between">
@@ -84,7 +95,7 @@ function renderStep3(formId, errors){
     let html = '';
 
     html += `
-        <form hx-post="/submit-complete-form">
+        <form hx-post="/submit-complete-form" hx-target="#form-section">
             <input type="hidden" name="formId" value="${formId}">
             <div class="mb-4">
                 <div class="form-check">
@@ -117,10 +128,32 @@ function renderStep3(formId, errors){
 
         </form>
     `
+
+    return html;
+}
+
+function confirmation(profileData){
+
+    let html = '';
+
+    html += `
+        <div class="text-center">
+            <h2 class="mb-4">Thank you for submitting!</h2>
+            <div class="card">
+                <div class="card-body text-start">
+                    <h5 class="card-title mb-3">Submitted Data:</h5>
+                    <pre class="m-0">${JSON.stringify(profileData, null, 2) }</pre>
+                </div>
+            </div>
+        </div>
+    `
+
+    return html;
 }
 
 module.exports = {
     renderStep1,
     renderStep2,
-    renderStep3
+    renderStep3,
+    confirmation
 }

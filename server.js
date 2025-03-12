@@ -53,6 +53,44 @@ app.post("/submit-step1", async (req, res) => {
 
 })
 
+app.post("/submit-step2", async (req, res) => {
+    const {street, city, zip, formId} = req.body;
+    const errors = [];
+
+    if(!street) errors.push("Street is required");
+    if(!city) errors.push("City is required");
+    if(!zip) errors.push("ZIP code required");
+
+    if(errors.length > 0){
+        return res.send(forms.renderStep2(formId, errors, req.body))
+    }
+
+    await ProfileData.findByIdAndUpdate(
+        req.body.formId,
+        { address : {street, city, zip}}
+    );
+
+    return res.send(forms.renderStep3(formId, []))
+})
+
+app.post("/submit-complete-form", async (req, res) => {
+    const {newsletter, notifications} = req.body;
+
+    await ProfileData.findByIdAndUpdate(
+        req.body.formId,
+        {
+            preferences: {
+                newsletter: newsletter === 'on',
+                notifications: notifications === 'on'
+            }
+        }
+    )
+
+    const completeData = await ProfileData.findById(req.body.formId);
+
+    return res.send(forms.confirmation(completeData))
+})
+
 
 //Run the server
 app.listen(PORT, () => {
