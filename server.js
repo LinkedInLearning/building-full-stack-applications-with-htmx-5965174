@@ -13,14 +13,20 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}))
 
 //Connect to MongoDB
-getMongoUri().then((mongoUri) => {
+/* getMongoUri().then((mongoUri) => {
     mongoose.connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
         console.log(`Connected to in-memory MongoDB`)
         //Fetch some document count from db e.g Student.countDocuments();
     })
     .catch(err => console.error(`Failed to connect to in-memory db`, err))
-})
+}) */
+
+async function connectDB(){
+    const uri = await getMongoUri();
+    await mongoose.connect(uri, {})
+    console.log(`Connected to in-memory MongoDB`)
+}
 
 
 //Run the server
