@@ -75,12 +75,12 @@ function renderStep2(formId, errors, values){
             </div>
 
             <div class="d-flex justify-content-between">
-                <button type="button" 
+                <!--<button type="button" 
                         hx-get="/" 
                         hx-target="#step2"
                         class="btn btn-outline-secondary">
                     &larr; Previous
-                </button>
+                </button>-->
                 <button type="submit" class="btn btn-primary">
                     Next &rarr;
                 </button>
@@ -114,13 +114,13 @@ function renderStep3(formId, errors){
             </div>
 
             <div class="d-flex justify-content-between">
-                <button type="button" 
+                <!--<button type="button" 
                         hx-get="/step2" 
                         hx-target="#step3"
                         hx-include="[name='formId']"
                         class="btn btn-outline-secondary">
                     &larr; Previous
-                </button>
+                </button>-->
                 <button type="submit" class="btn btn-success">
                     Submit
                 </button>
