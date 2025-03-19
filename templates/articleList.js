@@ -17,10 +17,16 @@ module.exports = (articles, page, searchQuery) => {
          hx-swap="afterend"></div>
   ` : '';
 
-  return base(`
+  /* return base(`
     <div id="articles">
       ${articleItems}
       ${pagination}
     </div>
-  `);
+  `); */
+  return `
+    <div id="articles">
+      ${articleItems}
+      ${pagination}
+    </div>
+  `
 };

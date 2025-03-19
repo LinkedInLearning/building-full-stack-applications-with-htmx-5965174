@@ -43,9 +43,9 @@ const templates = {
 }
 
 //Routes
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
     res.send(templates.index())
-})
+}) */
 
 app.get("/articles", async (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -69,6 +69,34 @@ app.get("/articles", async (req, res) => {
     res.send(html)
 })
 
+app.get("/articles/new", (req, res) => {
+    res.send(templates.articleForm(null, {}))
+})
+
+app.post("/articles", async (req, res) => {
+    try{
+        const {title, content} = req.body;
+
+        const errors = []
+
+        //Check for errors
+        if (!title) errors.push('A title is required');
+        if (!content) errors.push('Blog content is required');
+
+        if(errors.length > 0){
+            return res.send(templates.articleForm(errors, req.body))
+        }
+
+        const newArticle = await Article.create({
+            title, 
+            content
+        })
+
+        res.send(templates.articleDetail(newArticle))
+    }catch(error){
+        res.send(templates.articleForm([error.message], {}))
+    }
+})
 
 async function start(){
     await connectDB()
