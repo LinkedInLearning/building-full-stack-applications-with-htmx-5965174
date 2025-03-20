@@ -98,6 +98,12 @@ app.post("/articles", async (req, res) => {
     }
 })
 
+app.get("/articles/:id", async (req, res) => {
+    const article = await Article.findById(req.params.id).lean()
+
+    res.send(templates.articleDetail(article))
+})
+
 async function start(){
     await connectDB()
     await seed()

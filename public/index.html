@@ -17,10 +17,11 @@
                        class="btn btn-success me-2">
                        New Article
                     </a>
-                    <form hx-get="/articles"
-                    hx-target="#main-page-content" class="d-flex">
+                    <form  class="d-flex">
                         <input type="search" name="q" class="form-control" 
                                placeholder="Search articles..." 
+                               hx-get="/articles"
+                               hx-target="#main-page-content" 
                                hx-trigger="input changed delay:500ms">
                     </form>
                 </div>

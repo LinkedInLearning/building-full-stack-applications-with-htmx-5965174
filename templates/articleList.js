@@ -6,7 +6,7 @@ module.exports = (articles, page, searchQuery) => {
       <div class="card-body">
         <h5 class="card-title">${article.title}</h5>
         <p class="card-text">${article.content.substring(0, 100)}...</p>
-        <a href="/articles/${article._id}" class="btn btn-primary">Read More</a>
+        <a hx-get="/articles/${article._id}" hx-target="#main-page-content" class="btn btn-primary">Read More</a>
       </div>
     </div>
   `).join('');
