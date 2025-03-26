@@ -14,15 +14,15 @@ app.use(express.static('public'));
 //Parse url-encoded data
 app.use(express.urlencoded({extended: true}))
 
-//Connect to MongoDB
-getMongoUri().then((mongoUri) => {
-    mongoose.connect(mongoUri, {})
-    .then(async () => {
-        console.log(`Connected to in-memory MongoDB`)
-        //Fetch some document count from db e.g Student.countDocuments();
-    })
-    .catch(err => console.error(`Failed to connect to in-memory db`, err))
-})
+async function connectDB(){
+    const uri = await getMongoUri();
+    await mongoose.connect(uri, {})
+    console.log(`Connected to in-memory MongoDB`)
+}
+
+async function seed(){
+    
+}
 
 app.get("/begin-form", (req, res) => {
 
@@ -92,10 +92,14 @@ app.post("/submit-complete-form", async (req, res) => {
 })
 
 
-//Run the server
-app.listen(PORT, () => {
-    console.log(`Server running at port:${PORT}`)
-})
+async function start(){
+    await connectDB()
+    await seed()
+    //Run the server
+    app.listen(PORT, () => {
+        console.log(`Server running at port:${PORT}`)
+    })
+}
 
 //Handle graceful shutdown
 process.on("SIGINT", async () => {
@@ -103,3 +107,5 @@ process.on("SIGINT", async () => {
     await stopMongoServer();
     process.exit(0)
 })
+
+start()
