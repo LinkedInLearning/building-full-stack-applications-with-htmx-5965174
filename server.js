@@ -13,18 +13,14 @@ app.use(express.static('public'));
 //Parse url-encoded data
 app.use(express.urlencoded({extended: true}))
 
-//Connect to MongoDB
-getMongoUri().then((mongoUri) => {
-    mongoose.connect(mongoUri, {})
-    .then(async () => {
-        console.log(`Connected to in-memory MongoDB`)
-        //Fetch some document count from db e.g Student.countDocuments();
-    })
-    .catch(err => console.error(`Failed to connect to in-memory db`, err))
-})
+async function connectDB(){
+    const uri = await getMongoUri();
+    await mongoose.connect(uri, {})
+    console.log(`Connected to in-memory MongoDB`)
+}
 
-app.get('/seed', async (req, res) => {
-    
+
+async function seed(){
     try{
         const students = [];
 
@@ -40,12 +36,12 @@ app.get('/seed', async (req, res) => {
 
         await Student.insertMany(students)
         console.log(`Database seeded with 100 students`)
-        res.status(200).send(`Database seeded with 100 students`)
+        
     }catch(error){
         console.error(`Error seeding database:`, error)
-        res.status(500).send(`Error seeding database`)
+        
     }
-})
+}
 
 app.get('/search-students', async (req, res)=> {
 
@@ -91,10 +87,14 @@ function renderSearchResults(students){
     return returnedFragment;
 }
 
-//Run the server
-app.listen(PORT, () => {
-    console.log(`Server running at port:${PORT}`)
-})
+async function start(){
+    await connectDB()
+    await seed()
+    //Run the server
+    app.listen(PORT, () => {
+        console.log(`Server running at port:${PORT}`)
+    })
+}
 
 //Handle graceful shutdown
 process.on("SIGINT", async () => {
@@ -102,3 +102,5 @@ process.on("SIGINT", async () => {
     await stopMongoServer();
     process.exit(0)
 })
+
+start()
