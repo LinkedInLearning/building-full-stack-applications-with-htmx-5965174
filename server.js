@@ -36,16 +36,12 @@ async function seed(){
 
 //Templates
 const templates = {
-    index: require("./templates/index"),
     articleForm: require("./templates/articleForm"),
     articleList: require("./templates/articleList"),
     articleDetail: require("./templates/articleDetail")
 }
 
-//Routes
-/* app.get("/", (req, res) => {
-    res.send(templates.index())
-}) */
+
 
 app.get("/articles", async (req, res) => {
     const page = parseInt(req.query.page) || 1;

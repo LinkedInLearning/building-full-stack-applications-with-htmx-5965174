@@ -1,5 +1,3 @@
-const base = require('./base');
-
 module.exports = (articles, page, searchQuery) => {
   const articleItems = articles.map(article => `
     <div class="card mb-3">
@@ -17,12 +15,6 @@ module.exports = (articles, page, searchQuery) => {
          hx-swap="afterend"></div>
   ` : '';
 
-  /* return base(`
-    <div id="articles">
-      ${articleItems}
-      ${pagination}
-    </div>
-  `); */
   return `
     <div id="articles">
       ${articleItems}

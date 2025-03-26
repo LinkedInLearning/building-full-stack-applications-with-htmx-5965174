@@ -1,6 +1,6 @@
-const base = require('./base');
 
-/* module.exports = (error) => base(` */
+
+
 module.exports = (error, values) => (`
 <div class="card">
     <div class="card-body">

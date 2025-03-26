@@ -1,6 +1,4 @@
-const base = require('./base');
 
-/* module.exports = (article) => base(` */
 module.exports = (article) => (`
 <div class="card">
     <div class="card-body">
