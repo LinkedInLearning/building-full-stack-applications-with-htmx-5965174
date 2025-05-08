@@ -1,6 +1,12 @@
 # Building Full-Stack Applications with HTMX
 This is the repository for the LinkedIn Learning course `Building Full-Stack Applications with HTMX`. The full course is available from [LinkedIn Learning][lil-course-url].
 
+![lil-thumbnail-url]
+
+## Course Description
+
+<p>Get up and running with HTMX in this hands-on course with software developer Fikayo Adepoju. Discover the essentials of building real-world web functionalities with HTMX and a Hypermedia API. Fikayo demonstrates how to use HTMX in your applications by first building common web functionalities like search to find information, paginated tables to manage data, infinite scroll, and a dynamic web form powered by a Hypermedia back end. Along the way, you’ll get a chance to practice your new skills and technical know-how by building a complete application, a blogging platform, from the ground up.</p><p>This course includes Code Challenges powered by CoderPad. Code Challenges are interactive coding exercises with real-time feedback, so you can get hands-on coding practice alongside the course content to advance your programming skills.</p>
+
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
@@ -20,15 +26,18 @@ To resolve this issue:
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
 
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+ ### Instructor
+
+Fikayo Adepoju
+
+Technical Writer | Software Developer
+                            
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/fikayo-adepoju?u=104).
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+[lil-course-url]: https://www.linkedin.com/learning/building-full-stack-applications-with-htmx
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/v2/D4D0DAQGMsl0d7Btfsg/learning-public-crop_675_1200/B4DZaDreQhGcAc-/0/1745965933895?e=2147483647&v=beta&t=k4Q78P3atrQMGkqQrVrnq9ynnDQD2xEHNPzHcXlXCr0
 
